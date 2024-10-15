@@ -1,12 +1,11 @@
 
-const express = require('express')
-const cors = require('cors')
-const fs = require('fs')
-const path = require('path')
+import express, { json } from 'express'
+import cors from 'cors'
+import { errorHandler } from './middlewares/errorHandler.js'
 
 // App initializieren
 const app = express()
-app.use(express.json())
+app.use(json())
 app.use(cors())
 
 
@@ -15,6 +14,7 @@ app.use(cors())
 
 
 // Global Error Handler
+app.use(errorHandler)
 
 
-module.exports = app
+export default app

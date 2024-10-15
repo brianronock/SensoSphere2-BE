@@ -1,58 +1,58 @@
-SensoSphere Backend
+# SensoSphere Backend
 
-Dies ist das Backend des SensoSphere V2 Projekts, entwickelt mit Node.js und Express. Es verwaltet API-Anfragen, Benutzer-Authentifizierung und die Integration von Sensordaten.
+Dies ist das Backend des **SensoSphere V2** Projekts, entwickelt mit **Node.js** und **Express**. Es verwaltet API-Anfragen, Benutzer-Authentifizierung und die Integration von Sensordaten.
 
-Inhaltsverzeichnis
+## Inhaltsverzeichnis
+- [Projektsetup](#projektsetup)
+- [Technologien verwendet](#technologien-verwendet)
+- [Entwicklungscheckliste](#entwicklungscheckliste)
+- [So führen Sie das Projekt aus](#so-führen-sie-das-projekt-aus)
+- [Deployment Vorbereitung](#deployment-vorbereitung)
 
-	•	Projektsetup
-	•	Technologien verwendet
-	•	Entwicklungscheckliste
-	•	So führen Sie das Projekt aus
-	•	Deployment Vorbereitung
+---
 
-Projektsetup
+## Projektsetup
 
-GitHub Einrichtung
+### GitHub Einrichtung
+1. Erstellen Sie ein Repository auf GitHub für das Backend (`SensoSphere2-BE`).
+2. Initialisieren Sie Git in Ihrem lokalen Ordner.
+3. Verknüpfen Sie Ihren lokalen Ordner mit dem GitHub-Repository.
+4. Erstellen Sie eine `README.md` Datei.
+5. Machen Sie einen ersten Commit und pushen Sie den Code zu GitHub.
 
-	1.	Erstellen Sie ein Repository auf GitHub für das Backend (SensoSphere2-BE).
-	2.	Initialisieren Sie Git in Ihrem lokalen Ordner.
-	3.	Verknüpfen Sie Ihren lokalen Ordner mit dem GitHub-Repository.
-	4.	Erstellen Sie eine README.md Datei.
-	5.	Machen Sie einen ersten Commit und pushen Sie den Code zu GitHub.
+---
 
-Technologien verwendet
+## Technologien verwendet
+- **Node.js**: JavaScript-Laufzeitumgebung für die Erstellung des Backends.
+- **Express**: Web-Framework für den Bau von APIs.
+- **MongoDB**: NoSQL-Datenbank zur Speicherung von Sensor- und Benutzerdaten.
+- **Mongoose**: ODM für MongoDB.
+- **JWT**: Zur Benutzer-Authentifizierung.
+- **BcryptJS**: Zum Hashen von Passwörtern.
+- **WebSockets**: Für Echtzeit-Updates.
+- **MQTT**: Zur Kommunikation von Sensordaten.
 
-	•	Node.js: JavaScript-Laufzeitumgebung für die Erstellung des Backends.
-	•	Express: Web-Framework für den Bau von APIs.
-	•	MongoDB: NoSQL-Datenbank zur Speicherung von Sensor- und Benutzerdaten.
-	•	Mongoose: ODM für MongoDB.
-	•	JWT: Zur Benutzer-Authentifizierung.
-	•	BcryptJS: Zum Hashen von Passwörtern.
-	•	WebSockets: Für Echtzeit-Updates.
-	•	MQTT: Zur Kommunikation von Sensordaten.
+---
 
-Entwicklungscheckliste
+## Entwicklungscheckliste
 
-1. Projektstruktur einrichten
+### 1. Projektstruktur einrichten
+- Erstellen Sie einen `src/` Ordner, um Ihren Backend-Code zu speichern.
+- Erstellen Sie die folgenden Unterordner in `src/`:
+  - `konfiguration/` (für Konfigurationsdateien)
+  - `controller/` (für Routen-Handler)
+  - `modelle/` (für MongoDB-Modelle)
+  - `routen/` (für API-Routendefinitionen)
+  - `middleware/` (für Authentifizierung und andere Middleware)
+  - `dienste/` (für externe Dienste wie WebSocket oder MQTT)
+  - `utils/` (für Hilfsfunktionen)
+  
+- Richten Sie die Datei `server.js` als Einstiegspunkt der Anwendung ein.
 
-	•	Erstellen Sie einen src/ Ordner, um Ihren Backend-Code zu speichern.
-	•	Erstellen Sie die folgenden Unterordner in src/:
-	•	konfiguration/ (für Konfigurationsdateien)
-	•	controller/ (für Routen-Handler)
-	•	modelle/ (für MongoDB-Modelle)
-	•	routen/ (für API-Routendefinitionen)
-	•	middleware/ (für Authentifizierung und andere Middleware)
-	•	dienste/ (für externe Dienste wie WebSocket oder MQTT)
-	•	utils/ (für Hilfsfunktionen)
-	•	Richten Sie die Datei server.js als Einstiegspunkt der Anwendung ein.
-
-2. Paketinstallation
-
-	•	Installieren Sie notwendige Pakete:
-
-npm install express mongoose jsonwebtoken bcryptjs cors joi socket.io swagger-ui-express mongodb dotenv nodemon
-
-
+### 2. Paketinstallation
+- Installieren Sie notwendige Pakete:
+  ```bash
+  npm install express mongoose jsonwebtoken bcryptjs cors joi socket.io swagger-ui-express mongodb dotenv nodemon
 
 3. Umgebungskonfiguration
 
@@ -67,7 +67,7 @@ npm install dotenv
 4. Benutzer-Authentifizierung
 
 	•	Richten Sie das User-Modell in src/modelle/User.js ein, um Benutzerdaten (z.B. Name, E-Mail, Passwort) zu verwalten.
-	•	Implementieren Sie die register und login Controller in src/kontrollers/authController.js:
+	•	Implementieren Sie die register und login Controller in src/controller/authController.js:
 	•	registerUser() zum Erstellen neuer Benutzer.
 	•	loginUser() zur Authentifizierung von Benutzern und Rückgabe eines JWT-Tokens.
 	•	Richten Sie die Routen für die Authentifizierung in src/routen/authRoutes.js ein:
@@ -83,13 +83,13 @@ npm install dotenv
 	•	src/routen/authRoutes.js für die Authentifizierung.
 	•	src/routen/sensorRoutes.js für die Verwaltung von Sensordaten.
 	•	src/routen/feedRoutes.js für die Verwaltung von Live-Feed-Posts und Kommentaren.
-	•	Implementieren Sie Routen-Handler in den jeweiligen Kontrollern (authKontroller.js, sensorKontroller.js, feedKontroller.js).
+	•	Implementieren Sie Routen-Handler in den jeweiligen Controllern (authController.js, sensorController.js, feedController.js).
 	•	Testen Sie die API-Endpunkte mit Postman, um sicherzustellen, dass sie wie erwartet funktionieren.
 
 6. Integration von Sensordaten
 
 	•	Richten Sie das Sensor-Modell in src/modelle/Sensor.js ein, um Sensorinformationen zu speichern.
-	•	Implementieren Sie CRUD-Operationen für Sensordaten in src/kontroller/sensorKontroller.js:
+	•	Implementieren Sie CRUD-Operationen für Sensordaten in src/controller/sensorController.js:
 	•	Sensordaten erstellen.
 	•	Sensordaten lesen.
 	•	Sensordaten aktualisieren.
@@ -163,3 +163,4 @@ git push
 	•	Bereiten Sie eine Produktionsumgebung für das Deployment vor (z.B. auf Heroku, AWS oder einer anderen Plattform).
 	•	Konfigurieren Sie Umgebungsvariablen für die Produktion (z.B. MongoDB URI, JWT Secret).
 	•	Deployen Sie das Backend und testen Sie es in einer Live-Umgebung.
+
